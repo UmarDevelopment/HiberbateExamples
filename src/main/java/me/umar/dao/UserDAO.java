@@ -14,8 +14,15 @@ public class UserDAO {
     public void saveUser(User user){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Transaction tx1 = session.beginTransaction();
-        System.out.println(user);
         session.save(user);
+        tx1.commit();
+        session.close();
+    }
+
+    public void updateUser(User user){
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        Transaction tx1 = session.beginTransaction();
+        session.update(user);
         tx1.commit();
         session.close();
     }
