@@ -1,6 +1,7 @@
 package me.umar.dbclasses;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "usershib")
@@ -14,10 +15,13 @@ public class User {
 
     private int age;
 
-    public User(){
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Auto> autos;
+
+    public User() {
     }
 
-    public User(int id, String name, int age){
+    public User(int id, String name, int age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -48,7 +52,7 @@ public class User {
     }
 
     @Override
-    public String toString(){
-        return id+":"+name+":"+age;
+    public String toString() {
+        return id + ":" + name + ":" + age;
     }
 }

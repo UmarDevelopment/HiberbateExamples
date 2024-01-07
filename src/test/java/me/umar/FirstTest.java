@@ -1,6 +1,8 @@
 package me.umar;
 
+import me.umar.dao.AutoDAO;
 import me.umar.dao.UserDAO;
+import me.umar.dbclasses.Auto;
 import me.umar.dbclasses.User;
 import org.junit.Test;
 
@@ -8,7 +10,7 @@ public class FirstTest {
 
     @Test
     public void saveUserTest(){
-        User user = new User(3, "Justin", 25);
+        User user = new User(4, "Justin", 25);
         new UserDAO().saveUser(user);
     }
 
@@ -32,5 +34,13 @@ public class FirstTest {
     public void updateUserTestV2(){
         User user2 = new User(2, "asd", 23);
         new UserDAO().updateUser(user2);
+    }
+
+    @Test
+    public void saveAutoTest(){
+        User user1 = new UserDAO().findById(1);
+        Auto auto = new Auto(2,"Car", "Yellow", 3);
+        auto.setUser(user1);
+        new AutoDAO().saveAuto(auto);
     }
 }
