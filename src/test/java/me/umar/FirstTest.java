@@ -10,7 +10,7 @@ public class FirstTest {
 
     @Test
     public void saveUserTest(){
-        User user = new User(4, "Justin", 25);
+        User user = new User("Popov", 20);
         new UserDAO().saveUser(user);
     }
 
@@ -32,7 +32,8 @@ public class FirstTest {
 
     @Test
     public void updateUserTestV2(){
-        User user2 = new User(2, "asd", 23);
+        User user2 = new User("asd", 23);
+        user2.setId(2);
         new UserDAO().updateUser(user2);
     }
 

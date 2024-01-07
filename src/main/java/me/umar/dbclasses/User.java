@@ -8,6 +8,7 @@ import java.util.List;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "name")
@@ -21,8 +22,8 @@ public class User {
     public User() {
     }
 
-    public User(int id, String name, int age) {
-        this.id = id;
+    public User(String name, int age) {
+        //this.id = id;
         this.name = name;
         this.age = age;
     }

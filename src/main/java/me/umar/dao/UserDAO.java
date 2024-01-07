@@ -8,7 +8,10 @@ import org.hibernate.Transaction;
 public class UserDAO {
 
     public User findById(int id){
-        return HibernateSessionFactoryUtil.getSessionFactory().openSession().get(User.class, id);
+        Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
+        User user = session.get(User.class, id);
+        session.close();
+        return user;
     }
 
     public void saveUser(User user){
