@@ -1,6 +1,7 @@
 package me.umar.dbclasses;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "auto")
@@ -9,10 +10,21 @@ public class Auto {
     @Id
     private Integer id;
     private String model;
-    private String color;
+    @OneToOne
+    @JoinColumn(name = "color")
+    private Color color;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 
     public User getUser() {
         return user;
@@ -41,18 +53,10 @@ public class Auto {
         this.model = model;
     }
 
-    public String getColor() {
-        return color;
-    }
 
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public Auto(Integer id, String model, String color, Integer user_id) {
+    public Auto(Integer id, String model, Integer user_id) {
         this.id = id;
         this.model = model;
-        this.color = color;
     }
 
     @Override

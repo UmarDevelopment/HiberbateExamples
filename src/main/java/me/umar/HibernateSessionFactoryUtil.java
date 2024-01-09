@@ -2,6 +2,7 @@ package me.umar;
 
 
 import me.umar.dbclasses.Auto;
+import me.umar.dbclasses.Color;
 import me.umar.dbclasses.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -22,6 +23,7 @@ public class HibernateSessionFactoryUtil {
                 Configuration configuration = new Configuration().configure();
                 configuration.addAnnotatedClass(User.class);
                 configuration.addAnnotatedClass(Auto.class);
+                configuration.addAnnotatedClass(Color.class);
                 StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
                 sessionFactory = configuration.buildSessionFactory(builder.build());
             }catch (Exception ex){

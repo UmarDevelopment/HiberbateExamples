@@ -1,8 +1,10 @@
 package me.umar;
 
 import me.umar.dao.AutoDAO;
+import me.umar.dao.ColorDAO;
 import me.umar.dao.UserDAO;
 import me.umar.dbclasses.Auto;
+import me.umar.dbclasses.Color;
 import me.umar.dbclasses.User;
 import org.junit.Test;
 
@@ -40,8 +42,22 @@ public class FirstTest {
     @Test
     public void saveAutoTest(){
         User user1 = new UserDAO().findById(1);
-        Auto auto = new Auto(2,"Car", "Yellow", 3);
+        Color color = new ColorDAO().getColorById("Red");
+        Auto auto = new Auto(3,"Hammer", 2);
+        auto.setColor(color);
         auto.setUser(user1);
         new AutoDAO().saveAuto(auto);
+    }
+
+    @Test
+    public void saveColorTest(){
+        Color color = new Color("Yellow", "qweqwe");
+        new ColorDAO().saveColor(color);
+    }
+
+    @Test
+    public void getColorTest(){
+        Color color = new ColorDAO().getColorById("Red");
+        System.out.println(color);
     }
 }
